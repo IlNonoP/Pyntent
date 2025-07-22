@@ -14,35 +14,35 @@ Pyntent is a lightweight Python library for intent recognition using plain text 
 pyntent.py
 intent/
 ├── INDEX.txt
-├── meteo.txt
-└── saluti.txt
+├── weather.txt
+└── greetings.txt
 ```
 
 ### Example: `intent/INDEX.txt`
 
 ```
-0|saluti
-1|meteo
+0|greetings
+1|weather
 ```
 
-- `0` is the code for greetings, using `saluti.txt`
-- `1` is the code for weather, using `meteo.txt`
+- `0` is the code for greetings, using `greetings.txt`
+- `1` is the code for weather, using `weather.txt`
 
-### Example: `intent/saluti.txt`
-
-```
-Ciao
-Buongiorno
-Ciao come stai?
-Salve
-```
-
-### Example: `intent/meteo.txt`
+### Example: `intent/greetings.txt`
 
 ```
-Che tempo fa oggi?
-Quanti gradi ci sono?
-Che meteo c'è?
+Hello
+Good morning
+Hello, how are you?
+Hi
+```
+
+### Example: `intent/weather.txt`
+
+```
+What's the weather like today?
+How many degrees is it?
+What's the weather?
 ```
 
 ## How to Use
@@ -56,7 +56,7 @@ Che meteo c'è?
 ```python
 from pyntent import get_intent
 
-intent_id, confidence = get_intent("Che tempo fa oggi?")
+intent_id, confidence = get_intent("What's the weather like today?")
 print(f"Intent ID: {intent_id}, Confidence: {confidence:.2f}")
 ```
 
