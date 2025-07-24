@@ -39,7 +39,33 @@ def get_intent(phrase):
                 result_id = intent_id
                 result_cent = average_percentage
 
-    return int(result_id), float(result_cent)
+    return result_id, float(result_cent)
 
+def remove_intent(phrase, intent_id):
+    filename = None
+    intent_id = str(intent_id)
+    with open("./intent/INDEX.txt", "r") as f:
+        index_data = f.readlines()
+    #print("INDEX DATA=",index_data)
+    for line in index_data:
+        if line.startswith(intent_id):
+            filename = line.split("|")[1]
+            break
+    if filename == None:
+        print("\nERROR PYINTENT: ID not found in index\n")
+        exit()
+    filename = filename.replace("\n", "")
+    try:
+        with open("./intent/"+filename+".txt", "r") as f:
+            intent_remove_data = f.readlines()
+    except:
+        print(f'\nERROR PYNTENT: Intent file "{filename}.txt" not found, did you write the right name in the index or in the file name? Did you put the file in the intent subdirecory?\n')
+        
+    for line in intent_remove_data:
+        words = line.split(" ")
+        for word in words:
+            phrase = phrase.replace(word, "")
 
-#print(get_intent("Che tenmpo fa otra?"))
+    return(phrase)
+
+print(get_intent("Fissa quello che vedi"))
